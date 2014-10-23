@@ -38,18 +38,18 @@ void main(int argc, char *argv[])
 	
 	printf("Connected to %s\nEscape character is 'BREAK':\n", argv[1]);
 	
-	char *buf , readbuf[128];
+	char *buf , readbuf[32];
 	int fd = open(argv[3], O_CREAT | O_WRONLY, S_IWRITE | S_IREAD);
 	
 	while (1) {
-		int y = read(sockfd, readbuf, 128); //recv(sockfd, readbuf, 128, 0); //
+		int y = read(sockfd, readbuf, 32); //recv(sockfd, readbuf, 128, 0); //
 		int i;
 		for (i=0; i<y; i++) {
 			printf("%c", readbuf[i]);
 		}
 		write(fd, readbuf, y);
-		while (y == 128) {
-			y = read(sockfd, readbuf, 128); //recv(sockfd, readbuf, 128, 0); //
+		while (y == 32) {
+			y = read(sockfd, readbuf, 32); //recv(sockfd, readbuf, 128, 0); //
 			for (i=0; i<y; i++) {
 				printf("%c", readbuf[i]);
 			}
